@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from "react";
 import { TProduct } from "../../types";
 import styles from "./Search.module.sass";
 
@@ -23,8 +23,7 @@ export const Search = ({ setProducts, allProducts }: {
     setBrands(uniqueBrands);
   }, [allProducts, values.option]);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const handleClick = () => {
     setValues({
       type: '',
       option: '',
@@ -67,12 +66,10 @@ export const Search = ({ setProducts, allProducts }: {
     setProducts(newProducts);
   }
 
-  console.log(values)
-
   const optionValues = values.type.length !== 0 ? values.type === 'category' ? categories : brands : []
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
         <input
           className={`${styles.input} ${styles.input_type_name}`}
           name="title"
@@ -121,7 +118,7 @@ export const Search = ({ setProducts, allProducts }: {
             }
           </select>
       </fieldset>
-      <button className={styles.btn}>Очистить</button>
+      <button type="button" onClick={handleClick} className={styles.btn}>Очистить</button>
     </form>
   )
 }
