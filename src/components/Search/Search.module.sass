@@ -1,14 +1,23 @@
 @import ../../mixins
+@import ../../vars
+
 .form
   display: flex
   justify-content: space-between
   margin: 20px 0
-  &__input
-    &_type
-      &_radio
-        
-      &_name
-        @include border-default
+
+.input
+  &_type
+    &_radio
+      display: none
+      &:disabled + label
+        background-color: $btn-disabled-color
+      &:checked + label
+        background-color: $btn-checked-color
+    &_name
+      @include border-default
+  &:focus
+    outline: none
 
 
 .fieldset
@@ -17,3 +26,22 @@
   margin: 0px
   display: flex
   justify-content: space-between
+  padding: 0
+  height: 50px
+  gap: 5px
+
+.btn
+  @include btn-default(100px)
+  display: flex
+  align-items: center
+  justify-content: center
+  &_type
+    &_radio
+      width: 150px
+
+.select
+  @include border-default
+  width: 150px
+  cursor: pointer
+  &:focus
+    outline: none

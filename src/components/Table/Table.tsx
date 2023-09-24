@@ -5,8 +5,8 @@ import styles from  './Table.module.sass';
 export const Table = ({products}: {products: TProduct[]}) => {
   return (
     <table className={styles.table}>
-      <thead className={styles.head}>
-        <tr className={styles.head__text}>
+      <thead>
+        <tr className={styles.head}>
           <th>Название</th>
           <th>Описание</th>
           <th>Цена</th>

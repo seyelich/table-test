@@ -5,6 +5,7 @@ import { Table } from '../Table/Table';
 import { getProducts } from '../../utils/api';
 import { paginationLimit } from '../../utils/constants';
 import { makeSubArray } from '../../utils/utils';
+import styles from './App.module.sass';
 
 function App() {
   const [allProducts, setAllProducts] = useState<TProduct[]>([]);
@@ -31,10 +32,22 @@ function App() {
       <Table products={products[count] === undefined ? [] : products[count]} />
       {
         currProd.length > paginationLimit &&
-        <div>
-          {count !== 0 && <button onClick={()=>setCount(count-1)}>Назад</button>}
-          <p>{count+1}</p>
-          {(count+1)*10 < currProd.length && <button onClick={()=>setCount(count+1)}>Далее</button>}
+        <div className={styles.pagination}>
+          <button
+            className={styles.pagination__btn}
+            onClick={()=>setCount(count-1)}
+            disabled={count === 0}
+          >
+            Назад
+          </button>
+          <p className={styles.count}>{count+1}</p>
+            <button
+              onClick={()=>setCount(count+1)}
+              className={styles.pagination__btn}
+              disabled={(count+1)*10 >= currProd.length}
+            >
+              Далее
+            </button>
         </div>
       }
     </main>

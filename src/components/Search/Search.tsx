@@ -67,12 +67,14 @@ export const Search = ({ setProducts, allProducts }: {
     setProducts(newProducts);
   }
 
+  console.log(values)
+
   const optionValues = values.type.length !== 0 ? values.type === 'category' ? categories : brands : []
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
         <input
-          className={styles.form__input_type_name}
+          className={`${styles.input} ${styles.input_type_name}`}
           name="title"
           value={values.title}
           onChange={handleChangeTitle}
@@ -80,27 +82,34 @@ export const Search = ({ setProducts, allProducts }: {
           disabled={values.option !== ''}
         />
         <fieldset className={styles.fieldset}>
-          <label htmlFor="brand">Бренд</label>
           <input
             type="radio"
             name="type"
+            id="brand"
             value="brand"
             onChange={handleChangeRadio}
             disabled={values.title.length > 0}
+            className={`${styles.input} ${styles.input_type_radio}`}
+            checked={values.type === 'brand'}
           />
-          <label htmlFor="category">Категория</label>
+          <label className={`${styles.btn} ${styles.btn_type_radio}`} htmlFor="brand">Бренд</label>
           <input
             type="radio"
             name="type"
+            id="category"
             value="category"
             onChange={handleChangeRadio}
             disabled={values.title.length > 0}
+            className={`${styles.input} ${styles.input_type_radio}`}
+            checked={values.type === 'category'}
           />
+          <label className={`${styles.btn} ${styles.btn_type_radio}`} htmlFor="category">Категория</label>
           <select
             name="option"
             value={values.option}
             onChange={handleChangeSelect}
             disabled={optionValues.length === 0}
+            className={styles.select}
           >
             <option value="">Выберите значение</option>
             {
@@ -112,7 +121,7 @@ export const Search = ({ setProducts, allProducts }: {
             }
           </select>
       </fieldset>
-      <button>Очистить</button>
+      <button className={styles.btn}>Очистить</button>
     </form>
   )
 }

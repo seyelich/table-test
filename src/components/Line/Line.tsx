@@ -12,9 +12,7 @@ export const Line = ({ el }: {el: TProduct}) => {
       <th>{el.brand}</th>
       <th>{el.category}</th>
       <th>
-        {/* {
-          el.images.map((el) => <img src={el} alt="картинка" className={styles.img} />)
-        } */}
+        <img src={el.images[0]} alt="картинка" className={styles.img} />
       </th>
     </tr>
   )

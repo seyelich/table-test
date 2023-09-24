@@ -1,0 +1,18 @@
+@import '../../mixins'
+@import '../../vars'
+
+.pagination
+  display: flex
+  justify-content: center
+  align-items: center
+  gap: 10px
+  margin-top: 20px
+  &__btn
+    @include btn-default(100px)
+    padding: 10px
+
+.description
+  overflow: scroll
+.count
+  font-size: $h2-font-size
+  margin: 0
